@@ -18,19 +18,12 @@ body {
     max-width: 400px;
     width: 100%;
     position: relative;
-    overflow: hidden;
 }
 
 .title {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #ffdb58;
-    animation: titleAnimation 1s ease-in-out;
-}
-
-@keyframes titleAnimation {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
 }
 
 .game-board {
@@ -39,6 +32,8 @@ body {
     gap: 10px;
     margin-bottom: 20px;
     position: relative;
+    max-width: 320px;
+    margin: 0 auto;
 }
 
 .cell {
@@ -53,7 +48,6 @@ body {
     height: 100px;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    position: relative;
 }
 
 .cell:hover {
@@ -84,14 +78,14 @@ body {
     background-color: red;
     top: 50%;
     left: 50%;
-    transform-origin: left;
+    transform-origin: left center;
     transition: width 0.5s ease, transform 0.5s ease;
     z-index: 1;
     border-radius: 5px;
 }
 
 .line.show {
-    width: 300px;
+    width: 100%;
 }
 
 .game-status {
