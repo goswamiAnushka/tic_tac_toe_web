@@ -1,111 +1,74 @@
+/* styles.css */
 body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Poppins', sans-serif;
-    color: #ffffff;
+    background: var(--background-color, #f4f4f4);
+    transition: background 0.5s;
 }
 
-.game-container {
+#app {
     text-align: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
-    position: relative;
+    background: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
 }
 
-.title {
-    font-size: 2.5rem;
+h1 {
+    color: var(--text-color, #333);
     margin-bottom: 20px;
-    color: #ffdb58;
 }
 
-.game-board {
+#board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    gap: 10px;
-    margin-bottom: 20px;
-    position: relative;
-    max-width: 320px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
 }
 
 .cell {
-    background-color: #ffffff;
+    background: var(--cell-color, #e0e0e0);
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-    height: 100px;
+    padding: 20px;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: background 0.3s, transform 0.3s;
 }
 
 .cell:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-    transform: scale(1.05);
+    background: var(--cell-hover-color, #ccc);
+    transform: scale(1.1);
 }
 
-.restart-button {
-    background-color: #ff5e57;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    color: #ffffff;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+#controls {
     margin-top: 20px;
 }
 
-.restart-button:hover {
-    background-color: #ff7070;
-}
-
-.hurrah-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    color: #ffdb58;
-    z-index: 10;
-}
-
-.hurrah-popup p {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.crackers {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.cracker {
-    width: 15px;
-    height: 40px;
-    background-color: #ffdb58;
+button {
+    background: var(--button-color, #6200ea);
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
     border-radius: 5px;
-    animation: pop 1s ease infinite;
+    cursor: pointer;
+    margin: 5px;
+    transition: background 0.3s;
 }
 
-@keyframes pop {
-    0% { transform: scale(1) translateY(0); }
-    50% { transform: scale(1.5) translateY(-50px); }
-    100% { transform: scale(1) translateY(0); }
+button:hover {
+    background: var(--button-hover-color, #3700b3);
+}
+
+/* Dark Theme */
+body.dark-theme {
+    --background-color: #333;
+    --text-color: #fff;
+    --cell-color: #555;
+    --cell-hover-color: #777;
+    --button-color: #bb86fc;
+    --button-hover-color: #3700b3;
 }
