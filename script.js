@@ -30,19 +30,20 @@ function handlePlayerChange() {
 
 function drawWinningLine(indexes) {
     const [first, second, third] = indexes;
+    const boardRect = document.querySelector('.game-board').getBoundingClientRect();
     const firstCell = cells[first].getBoundingClientRect();
     const thirdCell = cells[third].getBoundingClientRect();
 
-    const x1 = firstCell.left + firstCell.width / 2;
-    const y1 = firstCell.top + firstCell.height / 2;
-    const x2 = thirdCell.left + thirdCell.width / 2;
-    const y2 = thirdCell.top + thirdCell.height / 2;
+    const x1 = firstCell.left + firstCell.width / 2 - boardRect.left;
+    const y1 = firstCell.top + firstCell.height / 2 - boardRect.top;
+    const x2 = thirdCell.left + thirdCell.width / 2 - boardRect.left;
+    const y2 = thirdCell.top + thirdCell.height / 2 - boardRect.top;
 
     const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
     const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 
     line.style.width = `${length}px`;
-    line.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+    line.style.transform = `translate(${x1}px, ${y1}px) rotate(${angle}deg)`;
     line.classList.add('show');
 }
 
