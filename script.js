@@ -28,27 +28,23 @@ function handlePlayerChange() {
     statusText.innerHTML = `Player ${currentPlayer}'s turn`;
 }
 
-function triggerWinCelebration() {
-    const hurrahPopup = document.createElement('div');
-    hurrahPopup.classList.add('hurrah-popup');
-    hurrahPopup.innerHTML = `<h2>Hurrah! Player ${currentPlayer} Wins!</h2>`;
-    gameContainer.appendChild(hurrahPopup);
-    fireworkAnimation();
+function triggerHurrahEffect() {
+    const hurrahElement = document.createElement('div');
+    hurrahElement.classList.add('hurrah');
+    hurrahElement.innerText = 'Hurrah!';
+    gameContainer.appendChild(hurrahElement);
+
+    // Create multiple paper-like crackers
+    for (let i = 0; i < 30; i++) {
+        const cracker = document.createElement('div');
+        cracker.classList.add('cracker');
+        gameContainer.appendChild(cracker);
+    }
 
     setTimeout(() => {
-        hurrahPopup.remove();
+        hurrahElement.remove();
+        document.querySelectorAll('.cracker').forEach(cracker => cracker.remove());
     }, 3000);
-}
-
-function fireworkAnimation() {
-    for (let i = 0; i < 10; i++) {
-        const firework = document.createElement('div');
-        firework.classList.add('firework');
-        gameContainer.appendChild(firework);
-        setTimeout(() => {
-            firework.remove();
-        }, 2000);
-    }
 }
 
 function handleResultValidation() {
@@ -63,7 +59,7 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
-            triggerWinCelebration();
+            triggerHurrahEffect();
             break;
         }
     }
@@ -102,8 +98,6 @@ function handleRestartGame() {
     gameState = ['', '', '', '', '', '', '', '', ''];
     statusText.innerHTML = `Player ${currentPlayer}'s turn`;
     cells.forEach(cell => cell.innerText = '');
-    const fireworks = document.querySelectorAll('.firework');
-    fireworks.forEach(firework => firework.remove());
 }
 
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
