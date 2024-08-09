@@ -69,15 +69,62 @@ function handleCellClick(event) {
 }
 
 function botMove() {
-    let emptyCells = boardState.map((val, index) => val === '' ? index : null).filter(val => val !== null);
-    let randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    boardState[randomIndex] = currentPlayer;
-    cells[randomIndex].textContent = currentPlayer;
-    cells[randomIndex].style.color = '#40c4ff';
+    const bestMove = getBestMove();
+    boardState[bestMove] = currentPlayer;
+    cells[bestMove].textContent = currentPlayer;
+    cells[bestMove].style.color = '#40c4ff';
 
     if (checkWin()) return;
 
     currentPlayer = 'X';
+}
+
+function getBestMove() {
+    let bestMove = null;
+    let bestScore = -Infinity;
+
+    for (let i = 0; i < boardState.length; i++) {
+        if (boardState[i] === '') {
+            boardState[i] = 'O';
+            let score = minimax(boardState, 0, false);
+            boardState[i] = '';
+            if (score > bestScore) {
+                bestScore = score;
+                bestMove = i;
+            }
+        }
+    }
+
+    return bestMove;
+}
+
+function minimax(board, depth, isMaximizing) {
+    if (checkWinner(board, 'O')) return 10 - depth;
+    if (checkWinner(board, 'X')) return depth - 10;
+    if (!board.includes('')) return 0;
+
+    let bestScore = isMaximizing ? -Infinity : Infinity;
+
+    for (let i = 0; i < board.length; i++) {
+        if (board[i] === '') {
+            board[i] = isMaximizing ? 'O' : 'X';
+            let score = minimax(board, depth + 1, !isMaximizing);
+            board[i] = '';
+            bestScore = isMaximizing ? Math.max(score, bestScore) : Math.min(score, bestScore);
+        }
+    }
+
+    return bestScore;
+}
+
+function checkWinner(board, player) {
+    for (let condition of winningConditions) {
+        const [a, b, c] = condition;
+        if (board[a] === player && board[a] === board[b] && board[a] === board[c]) {
+            return true;
+        }
+    }
+    return false;
 }
 
 function resetGame() {
