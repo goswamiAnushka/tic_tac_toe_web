@@ -30,20 +30,19 @@ function handlePlayerChange() {
 
 function drawWinningLine(indexes) {
     const [first, second, third] = indexes;
-    const boardRect = document.querySelector('.game-board').getBoundingClientRect();
-    const firstCell = cells[first].getBoundingClientRect();
-    const thirdCell = cells[third].getBoundingClientRect();
+    const firstCell = cells[first];
+    const thirdCell = cells[third];
+  
+    const startX = firstCell.offsetLeft;
+    const startY = firstCell.offsetTop;
+    const endX = thirdCell.offsetLeft;
+    const endY = thirdCell.offsetTop;
 
-    const x1 = firstCell.left + firstCell.width / 2 - boardRect.left;
-    const y1 = firstCell.top + firstCell.height / 2 - boardRect.top;
-    const x2 = thirdCell.left + thirdCell.width / 2 - boardRect.left;
-    const y2 = thirdCell.top + thirdCell.height / 2 - boardRect.top;
+    const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
+    const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
-    const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-    const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-
-    line.style.width = `${length}px`;
-    line.style.transform = `translate(${x1}px, ${y1}px) rotate(${angle}deg)`;
+    line.style.width = `${length + 10}px`;  // Adding padding for better appearance
+    line.style.transform = `translate(${startX + 50}px, ${startY + 50}px) rotate(${angle}deg)`;  // Centering the line
     line.classList.add('show');
 }
 
