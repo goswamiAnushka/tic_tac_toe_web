@@ -71,51 +71,41 @@ body {
     background-color: #ff7070;
 }
 
-.game-status {
-    margin-top: 20px;
-}
-
-#status {
-    font-size: 1.2rem;
-}
-
 .hurrah-popup {
-    position: absolute;
+    display: none;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #f39c12;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: #ffdb58;
     z-index: 10;
-    animation: fadeInOut 3s ease forwards;
 }
 
-@keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+.hurrah-popup p {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
-.firework {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 10px;
-    height: 10px;
+.crackers {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cracker {
+    width: 15px;
+    height: 40px;
     background-color: #ffdb58;
-    border-radius: 50%;
-    animation: explode 1s ease forwards;
+    border-radius: 5px;
+    animation: pop 1s ease infinite;
 }
 
-@keyframes explode {
-    from {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-    }
-    to {
-        transform: translate(-50%, -50%) scale(4);
-        opacity: 0;
-    }
+@keyframes pop {
+    0% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.5) translateY(-50px); }
+    100% { transform: scale(1) translateY(0); }
 }
