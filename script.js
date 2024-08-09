@@ -40,16 +40,7 @@ function triggerWinCelebration() {
     }, 3000);
 }
 
-function fireworkAnimation() {
-    for (let i = 0; i < 10; i++) {
-        const firework = document.createElement('div');
-        firework.classList.add('firework');
-        gameContainer.appendChild(firework);
-        setTimeout(() => {
-            firework.remove();
-        }, 2000);
-    }
-}
+
 
 function handleResultValidation() {
     let roundWon = false;

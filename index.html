@@ -3,38 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Tic-Tac-Toe Game</title>
+    <title>Advanced Tic-Tac-Toe</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1 class="title">Tic-Tac-Toe</h1>
-        <div class="game-board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <button id="restart" class="restart-button">Restart Game</button>
-        <div class="game-status">
-            <p id="status">Player X's turn</p>
-        </div>
-        <div id="hurrah-popup" class="hurrah-popup">
-            <p>Hurrah! Player <span id="winner"></span> wins!</p>
-            <div class="crackers">
-                <div class="cracker"></div>
-                <div class="cracker"></div>
-                <div class="cracker"></div>
-                <div class="cracker"></div>
+    <div id="app">
+        <header>
+            <h1>Tic-Tac-Toe</h1>
+            <button id="theme-toggle">Switch Theme</button>
+        </header>
+        <div id="game">
+            <div id="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <div id="controls">
+                <button id="play-friend">Play with Friend</button>
+                <button id="play-bot">Play with Bot</button>
+                <button id="reset">Reset Game</button>
             </div>
         </div>
+        <footer>
+            <p>Advanced Tic-Tac-Toe by Anushka</p>
+        </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
