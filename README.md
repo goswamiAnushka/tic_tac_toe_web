@@ -19,27 +19,19 @@ To run the Tic-Tac-Toe game locally, follow these steps:
    ```bash
    git clone https://github.com/your-username/tic_tac_toe_web.git
 
-##
-Navigate to the project directory:
-
-bash
-Copy code
-cd tic_tac_toe_web
 Open index.html in your preferred browser:
 Simply open the index.html file to start the game.
+## Usage 🚀
 
-##Usage 🚀
 To play the game, follow these steps:
-Game Modes: Select between 'Play with Friend' or 'Play with Bot' to start the game.
-Make Your Move: Click on any cell to place your mark ('X' or 'O').
-Winning the Game: The first player to align three marks in a row, column, or diagonal wins.
-Reset the Game: Click the 'Reset Game' button to start over.
-Technologies Used 🛠️
-HTML5: Structuring the game layout.
-CSS3: Styling and responsive design.
-JavaScript: Game logic, bot AI, and interactive features.
-Contributing 🤝
-Contributions are welcome! If you have ideas to improve the game or find bugs, feel free to open an issue or create a pull request.
 
+- **Game Modes**: Select between 'Play with Friend' or 'Play with Bot' to start the game.
+- **Make Your Move**: Click on any cell to place your mark ('X' or 'O').
+- **Winning the Game**: The first player to align three marks in a row, column, or diagonal wins.
+- **Reset the Game**: Click the 'Reset Game' button to start over.
 
+## Technologies Used 🛠️
 
+- **HTML5**: Structuring the game layout.
+- **CSS3**: Styling and responsive design.
+- **JavaScript**: Game logic, bot AI, and interactive features.
