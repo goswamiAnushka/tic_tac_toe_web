@@ -1,7 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const statusText = document.getElementById('status');
 const restartBtn = document.getElementById('restart');
-const line = document.querySelector('.line');
+const gameContainer = document.querySelector('.game-container');
 
 let currentPlayer = 'X';
 let gameActive = true;
@@ -28,22 +28,27 @@ function handlePlayerChange() {
     statusText.innerHTML = `Player ${currentPlayer}'s turn`;
 }
 
-function drawWinningLine(indexes) {
-    const [first, second, third] = indexes;
-    const firstCell = cells[first];
-    const thirdCell = cells[third];
-  
-    const startX = firstCell.offsetLeft;
-    const startY = firstCell.offsetTop;
-    const endX = thirdCell.offsetLeft;
-    const endY = thirdCell.offsetTop;
+function triggerWinCelebration() {
+    const hurrahPopup = document.createElement('div');
+    hurrahPopup.classList.add('hurrah-popup');
+    hurrahPopup.innerHTML = `<h2>Hurrah! Player ${currentPlayer} Wins!</h2>`;
+    gameContainer.appendChild(hurrahPopup);
+    fireworkAnimation();
 
-    const angle = Math.atan2(endY - startY, endX - startX) * (180 / Math.PI);
-    const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+    setTimeout(() => {
+        hurrahPopup.remove();
+    }, 3000);
+}
 
-    line.style.width = `${length + 10}px`;  // Adding padding for better appearance
-    line.style.transform = `translate(${startX + 50}px, ${startY + 50}px) rotate(${angle}deg)`;  // Centering the line
-    line.classList.add('show');
+function fireworkAnimation() {
+    for (let i = 0; i < 10; i++) {
+        const firework = document.createElement('div');
+        firework.classList.add('firework');
+        gameContainer.appendChild(firework);
+        setTimeout(() => {
+            firework.remove();
+        }, 2000);
+    }
 }
 
 function handleResultValidation() {
@@ -58,7 +63,7 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
-            drawWinningLine(winCondition);
+            triggerWinCelebration();
             break;
         }
     }
@@ -97,8 +102,8 @@ function handleRestartGame() {
     gameState = ['', '', '', '', '', '', '', '', ''];
     statusText.innerHTML = `Player ${currentPlayer}'s turn`;
     cells.forEach(cell => cell.innerText = '');
-    line.classList.remove('show');
-    line.style.width = '0';
+    const fireworks = document.querySelectorAll('.firework');
+    fireworks.forEach(firework => firework.remove());
 }
 
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
